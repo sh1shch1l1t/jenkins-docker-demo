@@ -1,5 +1,11 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'docker:20.10.16'  // официальный образ с докером внутри
+      args '-v /var/run/docker.sock:/var/run/docker.sock' // проброс сокета Docker хоста
+    }
+  }
+
  stages {
     stage('Clone Repository'){
         steps {
